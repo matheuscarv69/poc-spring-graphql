@@ -10,3 +10,22 @@ type Query {
 
     getAllClients: [Client]
 }
+
+input ClientInput {
+    name: String,
+    email: String
+}
+
+
+type Mutation {
+
+    saveClient(
+        clientInput: ClientInput
+    ) : Client
+
+    updateClient(
+        id: ID,
+        clientInput: ClientInput
+    ): Client
+
+}

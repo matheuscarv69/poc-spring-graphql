@@ -13,8 +13,8 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public String name;
-    public String email;
+    private String name;
+    private String email;
 
     public Client(String name, String email) {
         this.name = name;
