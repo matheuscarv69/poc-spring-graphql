@@ -6,10 +6,6 @@ type Client {
 
 type Query {
 
-    hello: String
-
-    sum(a: Int, b: Int) : Int
-
     getClient(id: ID): Client
 
     getAllClients: [Client]

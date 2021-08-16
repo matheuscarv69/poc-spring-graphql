@@ -1,4 +1,4 @@
-package compras;
+package compras.entities.client.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import compras.entities.client.model.Client;
@@ -9,26 +9,10 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class QueryGraphQL implements GraphQLQueryResolver {
+public class GetAllClientsResolver implements GraphQLQueryResolver {
 
     @Autowired
     private ClientRepository clientRepository;
-
-    public String hello() {
-        return "Hello World";
-    }
-
-    public Integer sum(Integer a, Integer b) {
-        return a + b;
-    }
-
-    public Client getClient(Long id) {
-        Client client = clientRepository
-                .findById(id)
-                .orElseThrow(() -> new RuntimeException("Client not found"));
-
-        return client;
-    }
 
     public List<Client> getAllClients() {
         return clientRepository.findAll();

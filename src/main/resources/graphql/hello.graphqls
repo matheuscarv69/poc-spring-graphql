@@ -1,0 +1,8 @@
+# extend used by more types of Query
+extend type Query {
+
+    hello: String
+
+    sum(a:Int, b:Int) : Int
+
+}
