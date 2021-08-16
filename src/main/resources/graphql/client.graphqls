@@ -28,4 +28,6 @@ type Mutation {
         clientInput: ClientInput
     ): Client
 
+    deleteClient(id: ID) : Boolean
+
 }
