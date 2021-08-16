@@ -1,7 +1,16 @@
+type Client {
+    id: Int,
+    name: String,
+    email: String
+}
+
 type Query {
 
     hello: String
 
-    soma(a: Int, b: Int) : Int
+    sum(a: Int, b: Int) : Int
 
+    getClient(id: ID): Client
+
+    getAllClients: [Client]
 }
