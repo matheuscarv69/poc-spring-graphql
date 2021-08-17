@@ -32,6 +32,10 @@ public class Product {
         this.name = name;
     }
 
+    public BigDecimal getValue() {
+        return value;
+    }
+
     public void setValue(BigDecimal value) {
         this.value = value;
     }
