@@ -33,7 +33,10 @@ public class Purchase {
 
     public boolean isClientOwner(Long clientId) {
         return this.client.getId().equals(clientId);
+    }
 
+    public boolean isPending() {
+        return this.status.name().equals(StatusPurchase.PENDING.name());
     }
 
     public void setQuantity(Integer quantity) {
@@ -42,5 +45,13 @@ public class Purchase {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public StatusPurchase getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusPurchase status) {
+        this.status = status;
     }
 }
