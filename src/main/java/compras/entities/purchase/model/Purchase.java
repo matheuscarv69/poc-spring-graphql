@@ -31,4 +31,16 @@ public class Purchase {
     public Purchase() {
     }
 
+    public boolean isClientOwner(Long clientId) {
+        return this.client.getId().equals(clientId);
+
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 }

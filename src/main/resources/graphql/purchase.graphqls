@@ -20,7 +20,7 @@ input PurchaseInput {
 extend type Mutation {
 
     savePurchase(purchaseInput: PurchaseInput!) : Purchase!
-#    updatePurchase(id:ID!, purchase: PurchaseInput!) : Purchase!
+    updatePurchase(id:ID!, purchaseInput: PurchaseInput!) : Purchase!
 #    approvePurchase(id:ID!): StatusPurchase
 #    deletePurchase(id:ID!) : Boolean!
 
@@ -29,6 +29,6 @@ extend type Mutation {
 extend type Query {
 
     getPurchase(id:ID!) : Purchase
-#    getAllPurchases : [Purchase]!
+    getAllPurchases : [Purchase]!
 
 }
