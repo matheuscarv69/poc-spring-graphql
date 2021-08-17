@@ -1,6 +1,7 @@
 type Purchase {
     id: ID!
     quantity: Int!,
+    createdAt: LocalDateTime!,
     status: StatusPurchase!,
     client: Client,
     product: Product!
@@ -31,9 +32,4 @@ extend type Query {
     getPurchase(id: ID!) : Purchase
     getAllPurchases(page: Int = 0, size: Int = 10, direction: Direction = ASC, sort: String = "id") : [Purchase]!
 
-}
-
-enum Direction {
-    ASC,
-    DESC
 }

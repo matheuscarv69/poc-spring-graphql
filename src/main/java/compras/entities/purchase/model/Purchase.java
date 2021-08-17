@@ -4,6 +4,7 @@ import compras.entities.client.model.Client;
 import compras.entities.product.model.Product;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Purchase {
@@ -12,6 +13,8 @@ public class Purchase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer quantity;
+
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @Enumerated(EnumType.STRING)
     private StatusPurchase status = StatusPurchase.PENDING;

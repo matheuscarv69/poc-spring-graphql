@@ -1,0 +1,10 @@
+# Pagination
+enum Direction {
+    ASC,
+    DESC
+}
+
+# Scalar Types
+scalar Date
+scalar LocalDateTime
+
