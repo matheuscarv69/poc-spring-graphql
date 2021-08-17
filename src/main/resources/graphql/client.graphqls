@@ -4,6 +4,7 @@ type Client {
     email: String!
 
     purchases: [Purchase]!
+    purchasesByStatus(status: StatusPurchase): [Purchase]!
 }
 
 input ClientInput {

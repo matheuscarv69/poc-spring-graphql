@@ -3,6 +3,7 @@ package compras.entities.client.interceptorResolver;
 import com.coxautodev.graphql.tools.GraphQLResolver;
 import compras.entities.client.model.Client;
 import compras.entities.purchase.model.Purchase;
+import compras.entities.purchase.model.StatusPurchase;
 import compras.entities.purchase.repository.PurchaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,5 +20,8 @@ public class ClientResolver implements GraphQLResolver<Client> {
         return purchaseRepository.findAllByClientId(client.getId());
     }
 
+    public List<Purchase> purchasesByStatus(Client client, StatusPurchase statusPurchase){
+        return purchaseRepository.findAllByClientIdAndStatus(client.getId(), statusPurchase);
+    }
 
 }
