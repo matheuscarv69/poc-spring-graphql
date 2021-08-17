@@ -1,0 +1,34 @@
+type Purchase {
+    id: ID!
+    quantity: Int!,
+    status: StatusPurchase!,
+    client: Client,
+    product: Product!
+}
+
+enum StatusPurchase {
+    PENDING,
+    OK
+}
+
+input PurchaseInput {
+    quantity: Int!,
+    clientId: ID!,
+    productId: ID!
+}
+
+extend type Mutation {
+
+    savePurchase(purchaseInput: PurchaseInput!) : Purchase!
+#    updatePurchase(id:ID!, purchase: PurchaseInput!) : Purchase!
+#    approvePurchase(id:ID!): StatusPurchase
+#    deletePurchase(id:ID!) : Boolean!
+
+}
+
+extend type Query {
+
+    getPurchase(id:ID!) : Purchase
+#    getAllPurchases : [Purchase]!
+
+}
