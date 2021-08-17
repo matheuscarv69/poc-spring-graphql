@@ -16,10 +16,10 @@ public class Purchase {
     @Enumerated(EnumType.STRING)
     private StatusPurchase status = StatusPurchase.PENDING;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Client client;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
 
     public Purchase(Integer quantity, Client client, Product product) {
@@ -43,15 +43,23 @@ public class Purchase {
         this.quantity = quantity;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
     public StatusPurchase getStatus() {
         return status;
     }
 
     public void setStatus(StatusPurchase status) {
         this.status = status;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }
