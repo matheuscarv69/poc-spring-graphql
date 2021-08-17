@@ -1,29 +1,30 @@
 package compras.entities.product.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
-import compras.entities.product.inputs.ProductInput;
 import compras.entities.product.model.Product;
 import compras.entities.product.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Component
-public class UpdateProductResolver implements GraphQLMutationResolver {
+public class DeleteProductResolver implements GraphQLMutationResolver {
 
     @Autowired
     private ProductRepository productRepository;
 
     @Transactional
-    public Product updateProduct(Long id, ProductInput productInput) {
+    public Boolean deleteProduct(Long id) {
+        Optional<Product> possibleProduct = productRepository.findById(id);
 
-        Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
+        if (possibleProduct.isPresent()) {
+            productRepository.delete(possibleProduct.get());
+            return true;
+        }
 
-        product.setName(productInput.getName());
-        product.setValue(productInput.getValue());
-
-        return product;
+        return false;
     }
 
 }

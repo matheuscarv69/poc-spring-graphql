@@ -17,10 +17,10 @@ public class DeleteClientByIdResolver implements GraphQLMutationResolver {
 
     @Transactional
     public Boolean deleteClient(Long id) {
-        Optional<Client> client = clientRepository.findById(id);
+        Optional<Client> possibleClient = clientRepository.findById(id);
 
-        if (client.isPresent()) {
-            clientRepository.delete(client.get());
+        if (possibleClient.isPresent()) {
+            clientRepository.delete(possibleClient.get());
             return true;
         }
 

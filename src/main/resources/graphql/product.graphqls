@@ -13,7 +13,7 @@ extend type Mutation {
 
     saveProduct(productInput: ProductInput!) : Product
     updateProduct(id: ID!, productInput: ProductInput!): Product
-#    deleteProduct(id: ID!) : Boolean
+    deleteProduct(id: ID!) : Boolean
 
 }
 

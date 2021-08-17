@@ -1,6 +1,5 @@
 package compras.entities.product.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import compras.entities.product.model.Product;
 import compras.entities.product.repository.ProductRepository;
@@ -18,6 +17,5 @@ public class GetAllProductsResolver implements GraphQLQueryResolver {
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
-
 
 }
