@@ -24,4 +24,12 @@ public class Product {
 
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setValue(BigDecimal value) {
+        this.value = value;
+    }
+
 }
