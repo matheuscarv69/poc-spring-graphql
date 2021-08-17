@@ -21,6 +21,6 @@ extend type Mutation {
 extend type Query {
 
     getProduct(id: ID!) : Product
-    getAllProducts : [Product]!
+    getAllProducts(page: Int = 0, size: Int = 10, direction: Direction = ASC, sort: String = "id") : [Product]!
 
 }

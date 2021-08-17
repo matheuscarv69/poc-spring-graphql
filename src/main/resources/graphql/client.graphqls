@@ -14,15 +14,8 @@ input ClientInput {
 
 type Mutation {
 
-    saveClient(
-        clientInput: ClientInput!
-    ) : Client
-
-    updateClient(
-        id: ID!,
-        clientInput: ClientInput!
-    ): Client
-
+    saveClient(clientInput: ClientInput!) : Client
+    updateClient(id: ID!, clientInput: ClientInput!): Client
     deleteClient(id: ID!) : Boolean!
 
 }
@@ -30,8 +23,7 @@ type Mutation {
 type Query {
 
     getClient(id: ID!): Client
-
-    getAllClients: [Client]!
+    getAllClients(page: Int = 0, size: Int = 10, direction: Direction = ASC, sort: String = "id"): [Client]!
 }
 
 

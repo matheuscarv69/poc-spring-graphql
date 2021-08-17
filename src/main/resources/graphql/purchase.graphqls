@@ -28,7 +28,12 @@ extend type Mutation {
 
 extend type Query {
 
-    getPurchase(id:ID!) : Purchase
-    getAllPurchases : [Purchase]!
+    getPurchase(id: ID!) : Purchase
+    getAllPurchases(page: Int = 0, size: Int = 10, direction: Direction = ASC, sort: String = "id") : [Purchase]!
 
+}
+
+enum Direction {
+    ASC,
+    DESC
 }
