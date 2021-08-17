@@ -6,14 +6,16 @@ import compras.entities.client.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Component
-public class DeleteClientResolver implements GraphQLMutationResolver {
+public class DeleteClientByIdResolver implements GraphQLMutationResolver {
 
     @Autowired
     private ClientRepository clientRepository;
 
+    @Transactional
     public Boolean deleteClient(Long id) {
         Optional<Client> client = clientRepository.findById(id);
 

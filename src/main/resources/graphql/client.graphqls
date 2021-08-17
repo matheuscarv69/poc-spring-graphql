@@ -4,18 +4,10 @@ type Client {
     email: String
 }
 
-type Query {
-
-    getClient(id: ID): Client
-
-    getAllClients: [Client]
-}
-
 input ClientInput {
     name: String,
     email: String
 }
-
 
 type Mutation {
 
@@ -31,3 +23,14 @@ type Mutation {
     deleteClient(id: ID) : Boolean
 
 }
+
+type Query {
+
+    getClient(id: ID): Client
+
+    getAllClients: [Client]
+}
+
+
+
+
