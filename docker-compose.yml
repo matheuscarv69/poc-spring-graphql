@@ -9,6 +9,7 @@ services:
       context: .
     container_name: api-spring-graphql
     environment:
+      SERVER_PORT: 8080
       POSTGRES_HOST: postgres:5432
       DB_USER: postgres
       DB_PASSWORD: password
