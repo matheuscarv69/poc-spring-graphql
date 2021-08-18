@@ -11,3 +11,10 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
+
+  # cache-redis
+  redis:
+    image: 'redis'
+    container_name: redis
+    ports:
+      - "6379:6379"

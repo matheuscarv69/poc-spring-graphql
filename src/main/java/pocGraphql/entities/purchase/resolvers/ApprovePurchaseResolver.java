@@ -2,6 +2,7 @@ package pocGraphql.entities.purchase.resolvers;
 
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.validation.annotation.Validated;
 import pocGraphql.config.exception.ApiErrorException;
 import pocGraphql.config.exception.PurchaseNotFoundException;
@@ -24,6 +25,7 @@ public class ApprovePurchaseResolver implements GraphQLMutationResolver {
     private PurchaseRepository purchaseRepository;
 
     @Transactional
+    @CacheEvict(value = {"getAllPurchases", "getAllPurchasesClient", "getAllPurchasesProduct"}, allEntries = true)
     public StatusPurchase approvePurchase(@Valid @NotNull @Positive Long id) {
 
         Purchase purchase = purchaseRepository.findById(id)

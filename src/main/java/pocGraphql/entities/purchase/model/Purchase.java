@@ -4,10 +4,11 @@ import pocGraphql.entities.client.model.Client;
 import pocGraphql.entities.product.model.Product;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-public class Purchase {
+public class Purchase implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

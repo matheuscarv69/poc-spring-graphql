@@ -3,6 +3,7 @@ package pocGraphql.entities.purchase.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 import pocGraphql.config.exception.ApiErrorException;
@@ -24,6 +25,7 @@ public class DeletePurchaseResolver implements GraphQLMutationResolver {
     private PurchaseRepository purchaseRepository;
 
     @Transactional
+    @CacheEvict(value = {"getAllPurchases", "getAllPurchasesClient", "getAllPurchasesProduct"}, allEntries = true)
     public Boolean deletePurchase(@Valid @NotNull @Positive Long id) {
 
         Optional<Purchase> possiblePurchase = purchaseRepository.findById(id);

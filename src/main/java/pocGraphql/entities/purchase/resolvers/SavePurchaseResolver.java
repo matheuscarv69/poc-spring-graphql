@@ -2,6 +2,7 @@ package pocGraphql.entities.purchase.resolvers;
 
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.validation.annotation.Validated;
 import pocGraphql.config.exception.ClientNotFoundException;
 import pocGraphql.config.exception.ProductNotFoundException;
@@ -32,6 +33,7 @@ public class SavePurchaseResolver implements GraphQLMutationResolver {
     private ProductRepository productRepository;
 
     @Transactional
+    @CacheEvict(value = {"getAllPurchases", "getAllPurchasesClient", "getAllPurchasesProduct"}, allEntries = true)
     public Purchase savePurchase(@Valid PurchaseInput purchaseInput) {
         Client client = clientRepository.findById(purchaseInput.getClientId())
                 .orElseThrow(ClientNotFoundException::new);
