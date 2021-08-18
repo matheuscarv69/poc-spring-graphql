@@ -2,6 +2,8 @@ package compras.entities.purchase.resolvers;
 
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import compras.config.exception.ApiErrorException;
+import compras.config.exception.PurchaseNotFoundException;
 import compras.entities.purchase.model.Purchase;
 import compras.entities.purchase.model.StatusPurchase;
 import compras.entities.purchase.repository.PurchaseRepository;
@@ -20,8 +22,7 @@ public class ApprovePurchaseResolver implements GraphQLMutationResolver {
     public StatusPurchase approvePurchase(Long id) {
 
         Purchase purchase = purchaseRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Purchase not found"));
-
+                .orElseThrow(PurchaseNotFoundException::new);
 
         if (purchase.isPending()) {
             purchase.setStatus(StatusPurchase.OK);
@@ -31,7 +32,7 @@ public class ApprovePurchaseResolver implements GraphQLMutationResolver {
             return purchase.getStatus();
         }
 
-        throw new RuntimeException("This Purchase is approve already");
+        throw new ApiErrorException("This Purchase is approve already");
     }
 
 }

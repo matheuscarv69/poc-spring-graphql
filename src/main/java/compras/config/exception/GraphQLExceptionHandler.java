@@ -1,6 +1,5 @@
 package compras.config.exception;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import graphql.ExceptionWhileDataFetching;
 import graphql.GraphQLError;
@@ -8,7 +7,6 @@ import graphql.servlet.GenericGraphQLError;
 import graphql.servlet.GraphQLErrorHandler;
 import graphql.validation.ValidationError;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.List;
 import java.util.Map;
@@ -39,8 +37,19 @@ public class GraphQLExceptionHandler implements GraphQLErrorHandler {
                 return new ExceptionResponse(message);
             }
 
-            // Logar o error
-            return new ExceptionResponse("Ocorreu um erro ao processar a transação.");
+            if (exceptionError.getException() instanceof PurchaseNotFoundException) {
+                Throwable ex = exceptionError.getException();
+                String message = ex.getMessage();
+                return new ExceptionResponse(message);
+            }
+
+            if (exceptionError.getException() instanceof ApiErrorException) {
+                Throwable ex = exceptionError.getException();
+                String message = ex.getMessage();
+                return new ExceptionResponse(message);
+            }
+
+            return new ExceptionResponse("Internal Server Error");
         }
 
         if (error instanceof ValidationError) {

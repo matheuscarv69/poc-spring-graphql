@@ -1,6 +1,7 @@
 package compras.entities.product.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import compras.config.exception.ProductNotFoundException;
 import compras.entities.product.model.Product;
 import compras.entities.product.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class GetProductByIdResolver implements GraphQLQueryResolver {
 
         return productRepository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
+                .orElseThrow(ProductNotFoundException::new);
 
 
     }

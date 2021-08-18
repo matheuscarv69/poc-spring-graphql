@@ -1,6 +1,7 @@
 package compras.entities.product.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import compras.config.exception.ProductNotFoundException;
 import compras.entities.product.inputs.ProductInput;
 import compras.entities.product.model.Product;
 import compras.entities.product.repository.ProductRepository;
@@ -18,7 +19,7 @@ public class UpdateProductResolver implements GraphQLMutationResolver {
     @Transactional
     public Product updateProduct(Long id, ProductInput productInput) {
 
-        Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
+        Product product = productRepository.findById(id).orElseThrow(ProductNotFoundException::new);
 
         product.setName(productInput.getName());
         product.setValue(productInput.getValue());
