@@ -10,13 +10,13 @@ services:
     container_name: api-spring-graphql
     environment:
       SERVER_PORT: 8080
-      POSTGRES_HOST: postgres:5432
-      DB_USER: postgres
-      DB_PASSWORD: password
-      DB_SCHEMA: pocgraphql
-      CACHE_HOST: redis
-      CACHE_PORT: 6379
-      CACHE_EXPIRATION: 10000
+      DATABASE_URL: postgres:5432
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: password
+      DATABASE_SCHEMA: pocgraphql
+      REDIS_URL: redis
+      REDIS_PORT: 6379
+      REDIS_EXPIRATION: 10000
     ports:
       - "8080:8080"
     depends_on:
