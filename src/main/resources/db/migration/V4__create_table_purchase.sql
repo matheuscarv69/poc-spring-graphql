@@ -2,7 +2,7 @@ create table pocgraphql.purchase
 (
     id         bigserial   not null,
     quantity   bigint      not null,
-    createdAt  timestamp   not null,
+    created_at  timestamp   not null,
     status     varchar(20) not null,
     client_id  bigint      not null,
     product_id bigint      not null,

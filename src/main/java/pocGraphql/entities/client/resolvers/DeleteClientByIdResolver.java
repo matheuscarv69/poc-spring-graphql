@@ -2,6 +2,7 @@ package pocGraphql.entities.client.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import org.springframework.validation.annotation.Validated;
+import pocGraphql.config.exception.ClientNotFoundException;
 import pocGraphql.entities.client.model.Client;
 import pocGraphql.entities.client.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class DeleteClientByIdResolver implements GraphQLMutationResolver {
             return true;
         }
 
-        return false;
+        throw new ClientNotFoundException();
     }
 
 }
