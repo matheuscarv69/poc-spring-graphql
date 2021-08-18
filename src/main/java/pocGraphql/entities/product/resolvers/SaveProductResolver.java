@@ -1,6 +1,7 @@
 package pocGraphql.entities.product.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.validation.annotation.Validated;
 import pocGraphql.entities.product.inputs.ProductInput;
 import pocGraphql.entities.product.model.Product;
@@ -19,7 +20,8 @@ public class SaveProductResolver implements GraphQLMutationResolver {
     private ProductRepository productRepository;
 
     @Transactional
-    public Product saveProduct(@Valid ProductInput productInput){
+    @CacheEvict(value = {"getAllProducts"}, allEntries = true)
+    public Product saveProduct(@Valid ProductInput productInput) {
         Product product = productInput.toModel();
 
         return productRepository.save(product);

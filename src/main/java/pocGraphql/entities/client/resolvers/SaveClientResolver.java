@@ -2,6 +2,7 @@ package pocGraphql.entities.client.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 import pocGraphql.entities.client.inputs.ClientInput;
@@ -19,6 +20,7 @@ public class SaveClientResolver implements GraphQLMutationResolver {
     private ClientRepository clientRepository;
 
     @Transactional
+    @CacheEvict(value = {"getAllClients", "getClientsPurchases", "getClientsPurchasesByStatus"}, allEntries = true)
     public Client saveClient(@Valid ClientInput clientInput) {
         Client client = clientInput.toModel();
 

@@ -1,6 +1,7 @@
 package pocGraphql.entities.product.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.validation.annotation.Validated;
 import pocGraphql.config.exception.ProductNotFoundException;
 import pocGraphql.entities.product.inputs.ProductInput;
@@ -22,6 +23,7 @@ public class UpdateProductResolver implements GraphQLMutationResolver {
     private ProductRepository productRepository;
 
     @Transactional
+    @CacheEvict(value = {"getAllProducts"}, allEntries = true)
     public Product updateProduct(@Valid @NotNull @Positive Long id, @Valid ProductInput productInput) {
 
         Product product = productRepository.findById(id).orElseThrow(ProductNotFoundException::new);
