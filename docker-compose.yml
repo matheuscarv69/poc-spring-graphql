@@ -2,6 +2,26 @@ version: '3'
 
 services:
 
+  # api
+  api-spring-graphql:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    container_name: api-spring-graphql
+    environment:
+      POSTGRES_HOST: postgres:5432
+      DB_USER: postgres
+      DB_PASSWORD: password
+      DB_SCHEMA: pocgraphql
+      CACHE_HOST: redis
+      CACHE_PORT: 6379
+      CACHE_EXPIRATION: 10000
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - redis
+
   # database
   postgres:
     image: 'postgres:alpine'
