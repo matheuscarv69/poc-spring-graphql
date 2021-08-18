@@ -2,6 +2,8 @@ package compras.entities.purchase.resolvers;
 
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import compras.config.exception.ClientNotFoundException;
+import compras.config.exception.ProductNotFoundException;
 import compras.entities.client.model.Client;
 import compras.entities.client.repository.ClientRepository;
 import compras.entities.product.model.Product;
@@ -9,6 +11,7 @@ import compras.entities.product.repository.ProductRepository;
 import compras.entities.purchase.inputs.PurchaseInput;
 import compras.entities.purchase.model.Purchase;
 import compras.entities.purchase.repository.PurchaseRepository;
+import graphql.GraphQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,10 +32,10 @@ public class SavePurchaseResolver implements GraphQLMutationResolver {
     @Transactional
     public Purchase savePurchase(PurchaseInput purchaseInput) {
         Client client = clientRepository.findById(purchaseInput.getClientId())
-                .orElseThrow(() -> new RuntimeException("Client not found"));
+                .orElseThrow(ClientNotFoundException::new);
 
         Product product = productRepository.findById(purchaseInput.getProductId())
-                .orElseThrow(() -> new RuntimeException("Product not found"));
+                .orElseThrow(ProductNotFoundException::new);
 
         Purchase purchase = purchaseInput.toModel(client, product);
 
