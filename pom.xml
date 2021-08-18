@@ -14,7 +14,7 @@
     <name>poc-java-graphql</name>
     <description>poc-java-graphql</description>
     <properties>
-        <java.version>11</java.version>
+<!--        <java.version>11</java.version>-->
     </properties>
     <dependencies>
         <dependency>
