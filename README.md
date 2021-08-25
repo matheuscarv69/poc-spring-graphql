@@ -7,9 +7,9 @@ Este projeto trata-se de uma POC usando como tecnologias principais Java, Spring
 
 ## 🤔 O que é este projeto?
 
-Esse é um projeto que foi inicialmente desenvolvido no curso API GraphQL com Spring Boot da Udemy, porém por motivos de aprendizagem foram feitas algumas alterações na arquitetura utilizada e na adoção de novas tecnologias.
+Esse é um projeto que foi inicialmente desenvolvido no curso API GraphQL com Spring Boot da Udemy, porém sofreu algumas alterações na arquitetura utilizada e na adoção de novas tecnologias afim de aumentar o desafio.
 
-Basicamente o projeto possui operações de CRUD nas entidades de domínio do projeto, com algumas particularidades que o GraphQL permite a implementação.
+Basicamente o projeto possui operações de CRUD nas entidades de domínio, com algumas particularidades que o GraphQL possibilita a implementação.
 
 ## ⚡ Disponibilidade 
 
